@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const myblogs = require('./routes/myblogsRoutes');
 const mymessages = require('./routes/messagesRoutes');
 const env = require('dotenv');
+const cors = require('cors');
+
+app.use(cors());
 
 env.config();
 
