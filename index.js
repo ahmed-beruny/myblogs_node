@@ -3,10 +3,13 @@ const app = express();
 const BodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const myblogs = require('./routes/myblogsRoutes');
+const env = require('dotenv');
+
+env.config();
 
 app.use(BodyParser.json());
 
-mongoose.connect('mongodb+srv://ahmedberuny:325698bB@beruny-cluster.gxwev3w.mongodb.net/MyBlogs', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/api', myblogs);
 
