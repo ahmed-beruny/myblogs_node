@@ -15,7 +15,6 @@ router.get('/myblogs', async (req, res) => {
 
 //add a blog
 router.post('/myblogs', async (req, res) => {
-    console.log(req.body);
     const myblogs = new Myblogs({
         author: req.body.author,
         content: req.body.content,
@@ -32,7 +31,7 @@ router.post('/myblogs', async (req, res) => {
 //delete a blog
 router.delete('/myblogs/:id', async (req, res) => {
     try {
-        const removedmyblogs = await Myblogs.remove({ _id: req.params.id });
+        const removedmyblogs = await Myblogs.findByIdAndDelete(req.params.id);
         res.json(removedmyblogs);
     } catch (err) {
         res.json({ message: err });
