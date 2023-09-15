@@ -14,8 +14,8 @@ router.get('/myblogs', async (req, res) => {
 );
 
 router.post('/myblogs', async (req, res) => {
+    console.log(req.body);
     const myblogs = new Myblogs({
-        title: req.body.title,
         author: req.body.author,
         content: req.body.content,
         image: req.body.image

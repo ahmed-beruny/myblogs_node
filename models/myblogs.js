@@ -14,8 +14,17 @@ const myblogsSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: Buffer,
+        type: String,
         required: false
+    },
+    likes: {
+        type: Number,
+        required: false
+    },
+    comments: {
+        type: Array,
+        required: false,
+        default: []
     }
 }
 , { timestamps: true});

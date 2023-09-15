@@ -11,7 +11,11 @@ app.use(cors());
 
 env.config();
 
-app.use(BodyParser.json());
+
+//avoid payload too large error
+app.use(BodyParser.json({limit: "50mb"}));
+app.use(BodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
