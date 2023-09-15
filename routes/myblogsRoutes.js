@@ -28,6 +28,16 @@ router.post('/myblogs', async (req, res) => {
     }
 });
 
+//get a specific blog
+router.get('/myblogs/:id', async (req, res) => {
+    try {
+        const myblogs = await Myblogs.findById(req.params.id);
+        res.json(myblogs);
+    } catch (err) {
+        res.json({ message: err });
+    }
+});
+
 //delete a blog
 router.delete('/myblogs/:id', async (req, res) => {
     try {
