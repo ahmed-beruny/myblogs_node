@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Myblogs = require('../models/myblogs');
 
 
-
+//get all blogs 
 router.get('/myblogs', async (req, res) => {
     try {
         const myblogs = await Myblogs.find();
@@ -13,6 +13,7 @@ router.get('/myblogs', async (req, res) => {
 }
 );
 
+//add a blog
 router.post('/myblogs', async (req, res) => {
     console.log(req.body);
     const myblogs = new Myblogs({
@@ -27,5 +28,16 @@ router.post('/myblogs', async (req, res) => {
         res.json({ message: err });
     }
 });
+
+//delete a blog
+router.delete('/myblogs/:id', async (req, res) => {
+    try {
+        const removedmyblogs = await Myblogs.remove({ _id: req.params.id });
+        res.json(removedmyblogs);
+    } catch (err) {
+        res.json({ message: err });
+    }
+});
+
 
 module.exports = router;
